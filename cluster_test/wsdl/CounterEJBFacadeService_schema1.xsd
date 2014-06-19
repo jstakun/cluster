@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://jstakun.waw.redhat.com/" elementFormDefault="unqualified" targetNamespace="http://jstakun.waw.redhat.com/" version="1.0">
+<xs:element name="getCounter" type="tns:getCounter"/>
+<xs:element name="getCounterResponse" type="tns:getCounterResponse"/>
+<xs:element name="increaseCounter" type="tns:increaseCounter"/>
+<xs:element name="increaseCounterResponse" type="tns:increaseCounterResponse"/>
+<xs:complexType name="increaseCounter">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="increaseCounterResponse">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getCounter">
+    <xs:sequence/>
+  </xs:complexType>
+<xs:complexType name="getCounterResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

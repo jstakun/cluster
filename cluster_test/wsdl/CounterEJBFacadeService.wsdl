@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="CounterEJBFacadeService" targetNamespace="http://jstakun.waw.redhat.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://jstakun.waw.redhat.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+<schema xmlns="http://www.w3.org/2001/XMLSchema">
+<import namespace="http://jstakun.waw.redhat.com/" schemaLocation="CounterEJBFacadeService_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="getCounterResponse">
+    <wsdl:part name="parameters" element="tns:getCounterResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="getCounter">
+    <wsdl:part name="parameters" element="tns:getCounter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="increaseCounterResponse">
+    <wsdl:part name="parameters" element="tns:increaseCounterResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="increaseCounter">
+    <wsdl:part name="parameters" element="tns:increaseCounter">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="CounterEJBFacade">
+    <wsdl:operation name="increaseCounter">
+      <wsdl:input name="increaseCounter" message="tns:increaseCounter">
+    </wsdl:input>
+      <wsdl:output name="increaseCounterResponse" message="tns:increaseCounterResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCounter">
+      <wsdl:input name="getCounter" message="tns:getCounter">
+    </wsdl:input>
+      <wsdl:output name="getCounterResponse" message="tns:getCounterResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CounterEJBFacadeServiceSoapBinding" type="tns:CounterEJBFacade">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="increaseCounter">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="increaseCounter">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="increaseCounterResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getCounter">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="getCounter">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="getCounterResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CounterEJBFacadeService">
+    <wsdl:port name="CounterEJBFacadePort" binding="tns:CounterEJBFacadeServiceSoapBinding">
+      <soap:address location="http://localhost:9090/CounterEJBFacadePort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
