@@ -38,7 +38,9 @@ public class SessionCounterListener implements HttpSessionListener {
      * @see HttpSessionListener#sessionDestroyed(HttpSessionEvent)
      */
     public void sessionDestroyed(HttpSessionEvent arg0) {
-    	totalActiveSessions--;
+    	if (totalActiveSessions > 0) {
+    		totalActiveSessions--;
+    	}
     	logger.log(Level.INFO, "Expired session " + arg0.getSession().getId() + " destroyed!\nThere are " + totalActiveSessions + " active sessions..." );
     }
 	

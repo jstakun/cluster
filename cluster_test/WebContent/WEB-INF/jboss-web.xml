@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<jboss-web>
 	    <security-domain>java:/jaas/cluster_test</security-domain>
+	    
+	    <max-active-sessions>-1</max-active-sessions>
+	    <passivation-config>
+      		<use-session-passivation>false</use-session-passivation>
+      		<passivation-min-idle-time>-1</passivation-min-idle-time>
+      		<passivation-max-idle-time>-1</passivation-max-idle-time>
+      	</passivation-config>
 	</jboss-web>

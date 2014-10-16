@@ -21,16 +21,6 @@
 		<listener-class>com.redhat.waw.jstakun.SessionCounterListener</listener-class>
 	</listener>
 	
-	<servlet>
-		<display-name>CounterEJBFacade</display-name>
-		<servlet-name>CounterEJBFacade</servlet-name>
-		<servlet-class>com.redhat.waw.jstakun.CounterEJBFacade</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>CounterEJBFacade</servlet-name>
-		<url-pattern>/counterws</url-pattern>
-	</servlet-mapping>
-	
 	<!-- security -->
 	
 	<security-role>

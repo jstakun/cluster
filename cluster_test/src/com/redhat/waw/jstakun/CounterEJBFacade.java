@@ -22,7 +22,7 @@ public class CounterEJBFacade implements Serializable {
 		try {
 			ejbLocal = (CounterEJBLocal) new InitialContext().lookup("java:global/cluster/cluster_test_ejb/CounterEJB!com.redhat.waw.jstakun.CounterEJBLocal");
 		} catch (NamingException e) {
-			e.printStackTrace();
+			logger.log(Level.SEVERE, e.getMessage(), e);
 		}
     }
 	
