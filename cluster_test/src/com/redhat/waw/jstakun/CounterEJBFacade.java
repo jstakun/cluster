@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.ejb.EJB;
+import javax.ejb.NoSuchEJBException;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 import javax.naming.InitialContext;
@@ -19,28 +20,46 @@ public class CounterEJBFacade implements Serializable {
 	CounterEJBLocal ejbLocal;
 	
 	public CounterEJBFacade() {
+		lookupEjb();
+    }
+
+	private void lookupEjb() {
 		try {
 			ejbLocal = (CounterEJBLocal) new InitialContext().lookup("java:global/cluster/cluster_test_ejb/CounterEJB!com.redhat.waw.jstakun.CounterEJBLocal");
 		} catch (NamingException e) {
 			logger.log(Level.SEVERE, e.getMessage(), e);
 		}
-    }
+	}
 	
 	@WebMethod()
 	public int getCounter() {
-		if (ejbLocal != null) {
-			return ejbLocal.getCounter();
-		} else {
+		try {
+			if (ejbLocal != null) {
+				return ejbLocal.getCounter();
+			} else {
+				return -1;
+			}
+		} catch (NoSuchEJBException e) {
+			lookupEjb();
+			return -1;
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.getMessage(), e);
 			return -1;
 		}
 	}
 	
 	@WebMethod()
 	public void increaseCounter() {
-		if (ejbLocal != null) {
-			ejbLocal.increaseCounter();
-		} else {
-			logger.log(Level.SEVERE, "ejbLocal is null");
+		try {
+			if (ejbLocal != null) {
+				ejbLocal.increaseCounter();
+			} else {
+				logger.log(Level.SEVERE, "ejbLocal == null");
+			}
+		} catch (NoSuchEJBException e) {
+			lookupEjb();
+		} catch (Exception e) {
+			logger.log(Level.SEVERE, e.getMessage(), e);
 		}
 	}
 }
